@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./component/Header/Header";
+import EmployeeForm from "./component/EmployeeForm/EmployeeForm";
+import EmployeeDetails from "./component/EmployeeDetails/EmployeeDetails";
 
 function App() {
+  const employeeDetails = [
+    {
+      id: 1,
+      name: "Sanket Mane",
+      design: "UI developer | React js",
+      salary: 35000,
+    },
+    {
+      id: 2,
+      name: "Aditya Sawant",
+      design: "Front End React Js developer",
+      salary: 45000,
+    },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="main">
+      <Header />
+      <EmployeeForm />
+      <EmployeeDetails employeeDetails={employeeDetails} />
+    </main>
   );
 }
 

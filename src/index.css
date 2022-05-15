@@ -1,13 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  max-width: 1366px !important;
+  width: 100%;
+  margin: 0 auto;
 }
+
+.mid-wrapper {
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ------------------------------ form control : start ------------------------------ */
+
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+.form-control-v1 {
+  border: none !important;
+  border-bottom: 1px solid #dddddd !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+.floating-input {
+  position: relative;
+  margin: 0 0 32px !important;
+}
+
+.floating-input label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  transition: all 0.2s ease;
+  pointer-events: none;
+  color: #666666;
+}
+
+.form-control-v1:focus ~ label,
+.form-control-v1:not(:placeholder-shown) ~ label {
+  top: -2px;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* ------------------------------ form control : End ------------------------------ */
+
+/* --------------------------------- button : start --------------------------------- */
+
+.btn {
+  font-size: 16px !important;
+  text-transform: capitalize;
+  padding: 8px 24px !important;
+  border-radius: 50px !important;
+}
+
+.btn:active {
+  box-shadow: none !important;
+}
+
+.btn-primary {
+  background: rebeccapurple !important;
+}
+
+.btn-primary:hover {
+  background: #663399bd !important;
+}
+
+/* --------------------------------- button : End --------------------------------- */
