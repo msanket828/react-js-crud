@@ -83,4 +83,27 @@ input[type="number"]::-webkit-outer-spin-button {
   background: #663399bd !important;
 }
 
+.del-cta,
+.update-cta {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+}
+
+.del-cta .fa,
+.update-cta .fa {
+  color: #fff;
+}
+
+.del-cta {
+  background-color: #f00;
+}
+
+.update-cta {
+  background-color: green;
+}
+
 /* --------------------------------- button : End --------------------------------- */

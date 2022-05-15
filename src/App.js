@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./component/Header/Header";
 import EmployeeForm from "./component/EmployeeForm/EmployeeForm";
 import EmployeeDetails from "./component/EmployeeDetails/EmployeeDetails";
+import { useState } from "react";
 
 function App() {
   const employeeDetails = [
@@ -19,11 +20,19 @@ function App() {
     },
   ];
 
+  const [empData, setEmpData] = useState(employeeDetails);
+
+  const handleSaveEmployeeData = (newEmpData) => {
+    setEmpData((prevState) => {
+      return [newEmpData, ...prevState];
+    });
+  };
+
   return (
     <main className="main">
       <Header />
-      <EmployeeForm />
-      <EmployeeDetails employeeDetails={employeeDetails} />
+      <EmployeeForm onSaveEmployeeData={handleSaveEmployeeData} />
+      <EmployeeDetails employeeDetails={empData} />
     </main>
   );
 }

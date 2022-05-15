@@ -1,6 +1,10 @@
 import React from "react";
 
 const SingleEmployeeDetail = (props) => {
+  const handleDelete = (id) => {
+    props.onDeleteId(id);
+  };
+
   return (
     <tr>
       <td>{props.name}</td>
@@ -10,10 +14,18 @@ const SingleEmployeeDetail = (props) => {
         {props.salary}
       </td>
       <td>
-        <span className="del-cta">Delete</span>
+        <span
+          className="del-cta"
+          role="button"
+          onClick={() => handleDelete(props.id)}
+        >
+          <i className="fa fa-trash-o" aria-hidden="true"></i>
+        </span>
       </td>
       <td>
-        <span className="update-cta">Update</span>
+        <span className="update-cta" role="button">
+          <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </span>
       </td>
     </tr>
   );
