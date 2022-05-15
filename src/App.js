@@ -40,11 +40,29 @@ function App() {
     });
   };
 
+  const [isEditClick, setIsEditClick] = useState(false);
+  const [editData, setEditData] = useState("");
+  const handleEdit = (editData) => {
+    setIsEditClick(true);
+    setEditData(editData);
+  };
+
+  const handleSubmitEmployeeForm = (updatedEmpData) => {
+    let newUpdatedEmpData = empData.filter(
+      (emp) => emp.id == updatedEmpData.id
+    );
+  };
+
   return (
     <main className="main">
       <Header />
-      <EmployeeForm onSaveEmployeeData={handleSaveEmployeeData} />
-      <EmployeeDetails employeeDetails={empData} />
+      <EmployeeForm
+        onSaveEmployeeData={handleSaveEmployeeData}
+        editData={editData}
+        isEditClick={isEditClick}
+        onSaveUpdatedEmployeeData={handleSubmitEmployeeForm}
+      />
+      <EmployeeDetails employeeDetails={empData} onHandleEdit={handleEdit} />
     </main>
   );
 }

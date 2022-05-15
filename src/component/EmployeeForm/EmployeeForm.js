@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const EmployeeForm = (props) => {
   const [name, setName] = useState("");
@@ -19,17 +19,34 @@ const EmployeeForm = (props) => {
 
   const handleSubmitEmployeeForm = (e) => {
     e.preventDefault();
-    const enteredEmployeeData = {
-      id: Math.random(),
-      name,
-      design,
-      salary,
-    };
-    props.onSaveEmployeeData(enteredEmployeeData);
+    if (!props.isEditClick) {
+      const enteredEmployeeData = {
+        id: Math.random(),
+        name,
+        design,
+        salary,
+      };
+      props.onSaveEmployeeData(enteredEmployeeData);
+    } else {
+      const enteredUpdatedEmployeeData = {
+        id: props.editData.id,
+        name,
+        design,
+        salary,
+      };
+      props.onSaveUpdatedEmployeeData(enteredUpdatedEmployeeData);
+    }
+
     setName("");
     setDesign("");
     setSalary("");
   };
+
+  useEffect(() => {
+    setName(props.editData.name);
+    setDesign(props.editData.design);
+    setSalary(props.editData.salary);
+  }, [props.editData.name, props.editData.design, props.editData.salary]);
 
   return (
     <div className="employee-form mid-wrapper">
@@ -43,6 +60,7 @@ const EmployeeForm = (props) => {
                 className="form-control form-control-v1"
                 id=""
                 placeholder=" "
+                value={name}
                 onChange={handleEnteredName}
               />
               <label htmlFor="">Name</label>
@@ -54,6 +72,7 @@ const EmployeeForm = (props) => {
                 className="form-control form-control-v1"
                 id=""
                 placeholder=" "
+                value={design}
                 onChange={handleEnteredDesign}
               />
               <label htmlFor="">Designation</label>
@@ -65,13 +84,20 @@ const EmployeeForm = (props) => {
                 className="form-control form-control-v1"
                 id=""
                 placeholder=" "
+                value={salary}
                 onChange={handleEnteredSalary}
               />
               <label htmlFor="">Salary</label>
             </div>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
+            {props.isEditClick ? (
+              <button type="submit" className="btn btn-primary">
+                Update
+              </button>
+            ) : (
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            )}
           </form>
         </div>
       </div>

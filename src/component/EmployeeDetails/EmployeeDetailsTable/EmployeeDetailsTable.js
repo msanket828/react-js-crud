@@ -3,6 +3,7 @@ import SingleEmployeeDetail from "./SingleEmployeeDetail/SingleEmployeeDetail";
 
 const EmployeeDetailsTable = (props) => {
   const [filteredEmpData, setFilteredEmpData] = useState(props.employeeDetails);
+  const [editDataId, setEditDataId] = useState("");
 
   useEffect(() => {
     setFilteredEmpData(props.employeeDetails);
@@ -14,7 +15,8 @@ const EmployeeDetailsTable = (props) => {
   };
 
   const handleEdit = (editData) => {
-    console.log(props.newUpdatedData);
+    // console.log(props.newUpdatedData);
+    setEditDataId(editData);
     props.onHandleEdit(editData);
   };
 
