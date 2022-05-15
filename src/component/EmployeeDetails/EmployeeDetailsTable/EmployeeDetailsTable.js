@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SingleEmployeeDetail from "./SingleEmployeeDetail/SingleEmployeeDetail";
 
 const EmployeeDetailsTable = (props) => {
   const [filteredEmpData, setFilteredEmpData] = useState(props.employeeDetails);
 
+  useEffect(() => {
+    setFilteredEmpData(props.employeeDetails);
+  }, [props.employeeDetails]);
+
   const handleDelete = (id) => {
     let newData = filteredEmpData.filter((emp) => id != emp.id);
     setFilteredEmpData(newData);
-    console.log(filteredEmpData);
+  };
+
+  const handleEdit = (editData) => {
+    console.log(props.newUpdatedData);
+    props.onHandleEdit(editData);
   };
 
   return (
@@ -21,16 +29,25 @@ const EmployeeDetailsTable = (props) => {
         </tr>
       </thead>
       <tbody>
-        {filteredEmpData.map((emp) => (
-          <SingleEmployeeDetail
-            key={emp.id}
-            id={emp.id}
-            name={emp.name}
-            design={emp.design}
-            salary={emp.salary}
-            onDeleteId={handleDelete}
-          />
-        ))}
+        {filteredEmpData.length < 1 ? (
+          <tr>
+            <td className="text-center" colSpan={5}>
+              <h3 className="display-5">No Record Found</h3>
+            </td>
+          </tr>
+        ) : (
+          filteredEmpData.map((emp) => (
+            <SingleEmployeeDetail
+              key={emp.id}
+              id={emp.id}
+              name={emp.name}
+              design={emp.design}
+              salary={emp.salary}
+              onDeleteId={handleDelete}
+              onHandleEdit={handleEdit}
+            />
+          ))
+        )}
       </tbody>
     </table>
   );

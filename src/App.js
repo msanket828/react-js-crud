@@ -18,6 +18,18 @@ function App() {
       design: "Front End React Js developer",
       salary: 45000,
     },
+    {
+      id: 3,
+      name: "Sanket Patil",
+      design: "Angular Front end developer",
+      salary: 25000,
+    },
+    {
+      id: 4,
+      name: "Aniket Shrirao",
+      design: "Full stack web developer",
+      salary: 50000,
+    },
   ];
 
   const [empData, setEmpData] = useState(employeeDetails);

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const SingleEmployeeDetail = (props) => {
   const handleDelete = (id) => {
     props.onDeleteId(id);
+  };
+  const handleEdit = (editData) => {
+    props.onHandleEdit(editData);
   };
 
   return (
@@ -23,7 +26,11 @@ const SingleEmployeeDetail = (props) => {
         </span>
       </td>
       <td>
-        <span className="update-cta" role="button">
+        <span
+          className="update-cta"
+          role="button"
+          onClick={() => handleEdit(props)}
+        >
           <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
         </span>
       </td>
