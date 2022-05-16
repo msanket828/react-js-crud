@@ -7,25 +7,36 @@ const SingleEmployeeDetail = (props) => {
   const handleEdit = (editData) => {
     props.onHandleEdit(editData);
   };
-
+  
   return (
     <tr>
-      <td>{props.name}</td>
-      <td>{props.design}</td>
-      <td>
-        <span className="mr-1">&#x20B9;</span>
-        {props.salary}
+      <td data-label="Employee Name">{props.name}</td>
+      <td data-label="Employee Designation">{props.design}</td>
+      <td data-label="Employee Salary">
+        <p>
+          <span className="mr-1">&#x20B9;</span>
+          {props.salary}
+        </p>
       </td>
-      <td>
-        <span
-          className="del-cta"
-          role="button"
-          onClick={() => handleDelete(props.id)}
-        >
-          <i className="fa fa-trash-o" aria-hidden="true"></i>
-        </span>
+      <td data-label="Actions">
+        <div className="d-flex">
+          <span
+            className="del-cta mr-lg-0 mr-2"
+            role="button"
+            onClick={() => handleDelete(props.id)}
+          >
+            <i className="fa fa-trash-o" aria-hidden="true"></i>
+          </span>
+          <span
+            className="update-cta d-lg-none d-flex"
+            role="button"
+            onClick={() => handleEdit(props)}
+          >
+            <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+          </span>
+        </div>
       </td>
-      <td>
+      <td className="d-lg-table-cell d-none">
         <span
           className="update-cta"
           role="button"

@@ -5,6 +5,10 @@ const EmployeeForm = (props) => {
   const [design, setDesign] = useState("");
   const [salary, setSalary] = useState("");
 
+  let formHeading=props.isEditClick ? 
+                  (<h3 className="text-center mb-3">Update Employee Details</h3>):
+                  (<h3 className="text-center mb-3">Add New Employee Details</h3>);
+
   const handleEnteredName = (e) => {
     setName(e.target.value);
   };
@@ -49,8 +53,9 @@ const EmployeeForm = (props) => {
   }, [props.editData.name, props.editData.design, props.editData.salary]);
 
   return (
-    <div className="employee-form mid-wrapper">
+    <div className="employee-form small-wrapper">
       <div className="container">
+        { formHeading }
         <div className="employee-form__container py-4">
           <form action="" onSubmit={handleSubmitEmployeeForm}>
             <div className="form-group floating-input">
@@ -60,7 +65,7 @@ const EmployeeForm = (props) => {
                 className="form-control form-control-v1"
                 id=""
                 placeholder=" "
-                value={name}
+                value={name || ''}
                 onChange={handleEnteredName}
               />
               <label htmlFor="">Name</label>
@@ -72,7 +77,7 @@ const EmployeeForm = (props) => {
                 className="form-control form-control-v1"
                 id=""
                 placeholder=" "
-                value={design}
+                value={design || ''}
                 onChange={handleEnteredDesign}
               />
               <label htmlFor="">Designation</label>
@@ -84,7 +89,7 @@ const EmployeeForm = (props) => {
                 className="form-control form-control-v1"
                 id=""
                 placeholder=" "
-                value={salary}
+                value={salary || ''}
                 onChange={handleEnteredSalary}
               />
               <label htmlFor="">Salary</label>

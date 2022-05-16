@@ -1,8 +1,8 @@
-import "./App.css";
-import Header from "./component/Header/Header";
-import EmployeeForm from "./component/EmployeeForm/EmployeeForm";
-import EmployeeDetails from "./component/EmployeeDetails/EmployeeDetails";
 import { useState } from "react";
+import "./App.css";
+import EmployeeDetails from "./component/EmployeeDetails/EmployeeDetails";
+import EmployeeForm from "./component/EmployeeForm/EmployeeForm";
+import Header from "./component/Header/Header";
 
 function App() {
   const employeeDetails = [
@@ -42,27 +42,35 @@ function App() {
 
   const [isEditClick, setIsEditClick] = useState(false);
   const [editData, setEditData] = useState("");
+
   const handleEdit = (editData) => {
     setIsEditClick(true);
     setEditData(editData);
   };
 
   const handleSubmitEmployeeForm = (updatedEmpData) => {
-    let newUpdatedEmpData = empData.filter(
-      (emp) => emp.id == updatedEmpData.id
-    );
+    let newData=[...empData];    
+    let findIndexForUpdate = empData.findIndex((emp) => emp.id == updatedEmpData.id);
+    newData[findIndexForUpdate] = updatedEmpData;
+    setEmpData(newData);
+    setIsEditClick(false);
   };
+
+  const handleDelete = (id) => {
+    let newData = empData.filter((emp) => id != emp.id);
+    setEmpData(newData);
+  }
 
   return (
     <main className="main">
-      <Header />
+      <Header />      
       <EmployeeForm
         onSaveEmployeeData={handleSaveEmployeeData}
         editData={editData}
         isEditClick={isEditClick}
-        onSaveUpdatedEmployeeData={handleSubmitEmployeeForm}
+        onSaveUpdatedEmployeeData={handleSubmitEmployeeForm}        
       />
-      <EmployeeDetails employeeDetails={empData} onHandleEdit={handleEdit} />
+      <EmployeeDetails employeeDetails={empData} onHandleEdit={handleEdit} onHandleDelete={handleDelete} />
     </main>
   );
 }

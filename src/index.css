@@ -17,6 +17,12 @@ body {
   margin: 0 auto;
 }
 
+.small-wrapper {
+  max-width: 550px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 /* ------------------------------ form control : start ------------------------------ */
 
 .form-control:focus {
@@ -109,3 +115,44 @@ input[type="number"]::-webkit-outer-spin-button {
 /* --------------------------------- button : End --------------------------------- */
 
 /* ------------------------------ center modal ------------------------------ */
+
+
+@media only screen and (max-width: 992px) {
+  .table-v1 { border: none !important;}
+  .table-v1 thead tr { display: none;}
+  .table-v1 tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    width: 95%;
+    margin: 20px auto;
+    background: #e5e5e552;
+  }
+  .table-v1 td {
+    border-bottom: 1px solid #ddd !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .table-v1 td:not(:last-child) {
+    border-bottom: ;
+  }
+
+  .table-v1 td::before {
+    content: attr(data-label);
+    font-weight: 550;
+  }
+  .table-v1 td:last-child {
+    border-bottom: 0;
+  } 
+}
+
+@media only screen and (max-width: 576px) {
+  .table-v1 td {    
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .table-v1 td:before {
+    margin: 0 0 10px;
+  }
+}

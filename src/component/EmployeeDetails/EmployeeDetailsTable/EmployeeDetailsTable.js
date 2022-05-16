@@ -3,25 +3,21 @@ import SingleEmployeeDetail from "./SingleEmployeeDetail/SingleEmployeeDetail";
 
 const EmployeeDetailsTable = (props) => {
   const [filteredEmpData, setFilteredEmpData] = useState(props.employeeDetails);
-  const [editDataId, setEditDataId] = useState("");
 
   useEffect(() => {
     setFilteredEmpData(props.employeeDetails);
   }, [props.employeeDetails]);
 
   const handleDelete = (id) => {
-    let newData = filteredEmpData.filter((emp) => id != emp.id);
-    setFilteredEmpData(newData);
+    props.onHandleDelete(id);
   };
 
   const handleEdit = (editData) => {
-    // console.log(props.newUpdatedData);
-    setEditDataId(editData);
     props.onHandleEdit(editData);
   };
 
   return (
-    <table className="table table-bordered">
+    <table className="table table-bordered table-v1">
       <thead>
         <tr>
           <th>Employee Name</th>
@@ -34,7 +30,7 @@ const EmployeeDetailsTable = (props) => {
         {filteredEmpData.length < 1 ? (
           <tr>
             <td className="text-center" colSpan={5}>
-              <h3 className="display-5">No Record Found</h3>
+              <h3 className="display-5">No Records</h3>
             </td>
           </tr>
         ) : (
